@@ -16,7 +16,7 @@ class Api::V1::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      render json: @user
+      render json: @user, status: 201
     else
       render json: { error:
         "Unable to create user: #{@user.errors.full_messages.to_sentence}"},
@@ -44,7 +44,7 @@ class Api::V1::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.permit(:username, :password)
   end
 
   def set_user

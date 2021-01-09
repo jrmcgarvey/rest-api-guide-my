@@ -1,0 +1,202 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/{user_id}/facts":
+    parameters:
+    - name: user_id
+      in: path
+      description: user_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list facts
+      tags:
+      - Facts
+      responses:
+        '200':
+          description: successful
+          content: {}
+    post:
+      summary: create fact
+      tags:
+      - Facts
+      parameters: []
+      responses:
+        '201':
+          description: successful
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - fact
+              - likes
+              properties:
+                fact:
+                  type: string
+                likes:
+                  type: integer
+  "/api/v1/users/{user_id}/facts/{fact_id}":
+    parameters:
+    - name: user_id
+      in: path
+      description: user_id
+      required: true
+      schema:
+        type: string
+    - name: fact_id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show fact
+      tags:
+      - Facts
+      responses:
+        '200':
+          description: successful
+          content: {}
+    patch:
+      summary: update fact
+      tags:
+      - Facts
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fact:
+                  type: string
+                likes:
+                  type: integer
+    put:
+      summary: update fact
+      tags:
+      - Facts
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+    delete:
+      summary: delete fact
+      tags:
+      - Facts
+      responses:
+        '200':
+          description: successful
+          content: {}
+  "/api/v1/users":
+    get:
+      summary: list users
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+          content: {}
+    post:
+      summary: create user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: successful
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - username
+              - password
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+  "/api/v1/users/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+          content: {}
+    patch:
+      summary: update user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+    put:
+      summary: update user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: successful
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+    delete:
+      summary: delete user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+          content: {}
+servers:
+- url: ''

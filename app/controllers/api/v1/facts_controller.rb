@@ -16,7 +16,7 @@ class Api::V1::FactsController < ApplicationController
   def create
     @fact = Fact.new(fact_params)
     if @fact.save
-      render json: @fact
+      render json: @fact, status: 201
     else
       render json: { error:
         "Unable to create fact: #{@fact.errors.full_messages.to_sentence}"},
@@ -44,7 +44,7 @@ class Api::V1::FactsController < ApplicationController
   private
 
   def fact_params
-    params.require(:fact).permit(:fact, :likes, :user_id)
+    params.permit(:fact, :likes, :user_id)
   end
 
   def set_fact
