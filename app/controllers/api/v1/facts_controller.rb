@@ -1,18 +1,18 @@
 class Api::V1::FactsController < ApplicationController
   before_action :set_fact, only: [:show, :update, :destroy]
 
-  # GET /facts
+  # GET /users/:customer_id/facts
   def index
-    @facts = Fact.all
-    render json: @facts
+    @user = User.find(params[:user_id])
+    render json: @user.facts
   end
 
-  # GET /fact/:id
+  # GET /users/:user_id/fact/:id
   def show
     render json: @fact
   end
 
-  # POST /facts
+  # POST /users/:user_id/facts
   def create
     @fact = Fact.new(fact_params)
     if @fact.save
@@ -24,7 +24,7 @@ class Api::V1::FactsController < ApplicationController
     end
   end
 
-  # PUT /fact/:id
+  # PUT /users/:user_id/facts/:id
   def update
     if @fact.update(fact_params)
       render json: @fact, status: 200
@@ -35,7 +35,7 @@ class Api::V1::FactsController < ApplicationController
     end
   end
 
-  # DELETE /fact/:id
+  # DELETE /users/:user_id/facts/:id
   def destroy
     @fact.destroy
     render json: { message: 'Fact record successfully deleted.'}, status: 200
